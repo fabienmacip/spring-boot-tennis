@@ -1,4 +1,4 @@
-package com.webfm.tennis.rest;
+package com.webfm.tennis.web;
 
 import com.webfm.tennis.HealthCheck;
 import com.webfm.tennis.service.HealthCheckService;
