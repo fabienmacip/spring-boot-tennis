@@ -28,7 +28,7 @@ public class PlayerController {
     })
     @GetMapping
     public List<Player> list(){
-        return Collections.emptyList();
+        return PlayerList.ALL;
     }
 
     @Operation(summary = "Finds a player", description = "Finds a player")
@@ -40,7 +40,10 @@ public class PlayerController {
     })
     @GetMapping("/{lastName}")
     public Player getByLastName(@PathVariable("lastName") String lastName) {
-        return null;
+        return PlayerList.ALL.stream()
+                .filter(player -> player.lastName().equals(lastName))
+                .findFirst()
+                .orElse(null);
     }
 
     @Operation(summary = "Creates a player", description = "Creates a player")
