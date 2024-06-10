@@ -2,6 +2,7 @@ package com.webfm.tennis.service;
 
 import com.webfm.tennis.Player;
 import com.webfm.tennis.Rank;
+import com.webfm.tennis.web.PlayerList;
 import com.webfm.tennis.web.PlayerToSave;
 
 import java.util.ArrayList;
@@ -18,14 +19,21 @@ public class RankingCalculator {
         this.playerToSave = playerToSave;
     }
 
+    public RankingCalculator(List<Player> currentPlayersRanking) {
+        this.currentPlayersRanking = currentPlayersRanking;
+        this.playerToSave = null;
+    }
+
     public List<Player> getNewPlayersRanking() {
         List<Player> newRankingList = new ArrayList<>(currentPlayersRanking);
-        newRankingList.add(new Player(
-                playerToSave.firstName(),
-                playerToSave.lastName(),
-                playerToSave.birthDate(),
-                new Rank(999999999, playerToSave.points())
-        ));
+        if (playerToSave != null) {
+            newRankingList.add(new Player(
+                    playerToSave.firstName(),
+                    playerToSave.lastName(),
+                    playerToSave.birthDate(),
+                    new Rank(999999999, playerToSave.points())
+            ));
+        }
 
         newRankingList.sort((player1, player2) -> Integer.compare(player2.rank().points(), player1.rank().points()));
 
@@ -41,6 +49,9 @@ public class RankingCalculator {
             );
             updatedPlayers.add(updatedPlayer);
         }
+
+        PlayerList.ALL = updatedPlayers;
+
         return updatedPlayers;
     }
 }
