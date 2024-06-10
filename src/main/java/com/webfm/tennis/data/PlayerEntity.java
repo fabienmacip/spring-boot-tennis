@@ -1,4 +1,4 @@
-package com.webfm.tennis.repository;
+package com.webfm.tennis.data;
 
 //package com.dyma.tennis.data;
 

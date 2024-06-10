@@ -1,4 +1,4 @@
-package com.webfm.tennis.repository;
+package com.webfm.tennis.data;
 
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;

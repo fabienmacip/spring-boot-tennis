@@ -1,6 +1,6 @@
 package com.webfm.tennis.tennis;
 
-import com.webfm.tennis.repository.HealthCheckRepository;
+import com.webfm.tennis.data.HealthCheckRepository;
 import com.webfm.tennis.web.HealthCheckController;
 import com.webfm.tennis.service.HealthCheckService;
 import org.assertj.core.api.Assertions;

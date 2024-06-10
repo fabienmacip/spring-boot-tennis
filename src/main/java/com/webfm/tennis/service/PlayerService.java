@@ -1,8 +1,11 @@
 package com.webfm.tennis.service;
 
 import com.webfm.tennis.Player;
+import com.webfm.tennis.Rank;
+import com.webfm.tennis.data.PlayerRepository;
 import com.webfm.tennis.web.PlayerList;
 import com.webfm.tennis.web.PlayerToSave;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -12,8 +15,17 @@ import java.util.stream.Collectors;
 @Service
 public class PlayerService {
 
-    public List<Player> getAllPlayers(){
-        return PlayerList.ALL.stream()
+    @Autowired
+    private PlayerRepository playerRepository;
+
+    public List<Player> getAllPlayers() {
+        return playerRepository.findAll().stream()
+                .map(player -> new Player(
+                        player.getFirstName(),
+                        player.getLastName(),
+                        player.getBirthDate(),
+                        new Rank(player.getRank(), player.getPoints())
+                ))
                 .sorted(Comparator.comparing(player -> player.rank().position()))
                 .collect(Collectors.toList());
     }

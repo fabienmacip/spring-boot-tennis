@@ -2,7 +2,7 @@ package com.webfm.tennis.service;
 
 import com.webfm.tennis.ApplicationStatus;
 import com.webfm.tennis.HealthCheck;
-import com.webfm.tennis.repository.HealthCheckRepository;
+import com.webfm.tennis.data.HealthCheckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
