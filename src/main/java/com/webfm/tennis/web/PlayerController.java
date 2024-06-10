@@ -58,24 +58,27 @@ public class PlayerController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Created player",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = PlayerToRegister.class))})
+                            schema = @Schema(implementation = PlayerToSave.class))})
 
     })
     @PostMapping
-    public Player createPlayer(@Valid @RequestBody PlayerToRegister playerToRegister) {
-        return playerService.create(playerToRegister);
+    public Player createPlayer(@Valid @RequestBody PlayerToSave playerToSave) {
+        return playerService.create(playerToSave);
     }
 
     @Operation(summary = "Updates a player", description = "Updates a player")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Updated player",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Player.class))})
+                            schema = @Schema(implementation = PlayerToSave.class))}),
+            @ApiResponse(responseCode = "404", description = "Player with specified last name was not found.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Error.class))})
 
     })
     @PutMapping
-    public Player updatePlayer(@Valid @RequestBody Player player) {
-        return player;
+    public Player updatePlayer(@Valid @RequestBody PlayerToSave playerToSave) {
+        return playerService.update((playerToSave));
     }
 
     @Operation(summary = "Deletes a player", description = "Deletes a player")
