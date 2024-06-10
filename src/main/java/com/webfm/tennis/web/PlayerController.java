@@ -58,12 +58,12 @@ public class PlayerController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Created player",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Player.class))})
+                            schema = @Schema(implementation = PlayerToRegister.class))})
 
     })
     @PostMapping
-    public Player createPlayer(@Valid @RequestBody Player player) {
-        return player;
+    public Player createPlayer(@Valid @RequestBody PlayerToRegister playerToRegister) {
+        return playerService.create(playerToRegister);
     }
 
     @Operation(summary = "Updates a player", description = "Updates a player")
