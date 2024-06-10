@@ -43,15 +43,15 @@ public class PlayerController {
             @ApiResponse(responseCode = "200", description = "Player",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Player.class))}),
-            @ApiResponse(responseCode = "404", description = "Not found")
+            @ApiResponse(responseCode = "404", description = "Player with specified last name was not found.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Error.class))})
 
-    })
+
+})
     @GetMapping("/{lastName}")
     public Player getByLastName(@PathVariable("lastName") String lastName) {
-        return PlayerList.ALL.stream()
-                .filter(player -> player.lastName().equals(lastName))
-                .findFirst()
-                .orElseThrow();
+        return playerService.getByLastName(lastName);
     }
 
     @Operation(summary = "Creates a player", description = "Creates a player")
