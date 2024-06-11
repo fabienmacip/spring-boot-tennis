@@ -58,9 +58,12 @@ public class PlayerEntity {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    // Cette méthode est commentée, pour éviter de l'utiliser,
+    // car dans cette appli, on a choisi que lastName soit un identifiant unique,
+    // surlequel on refuse un doublon.
+    /*public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
+    }*/
 
     public String getFirstName() {
         return firstName;
