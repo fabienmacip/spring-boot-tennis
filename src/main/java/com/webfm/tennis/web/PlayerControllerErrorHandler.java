@@ -1,6 +1,7 @@
 package com.webfm.tennis.web;
 
 import com.webfm.tennis.Error;
+import com.webfm.tennis.service.PlayerAlreadyExistsException;
 import com.webfm.tennis.service.PlayerNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -15,6 +16,7 @@ import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class PlayerControllerErrorHandler {
+
 
     @ExceptionHandler(PlayerNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -32,6 +34,12 @@ public class PlayerControllerErrorHandler {
             errors.put(fieldName, errorMessage);
         });
         return errors;
+    }
+
+    @ExceptionHandler(PlayerAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Error handlePlayerAlreadyExistsException(PlayerAlreadyExistsException ex) {
+        return new Error(ex.getMessage());
     }
 
 }
