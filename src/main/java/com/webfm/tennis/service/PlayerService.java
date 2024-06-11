@@ -2,6 +2,7 @@ package com.webfm.tennis.service;
 
 import com.webfm.tennis.Player;
 import com.webfm.tennis.Rank;
+import com.webfm.tennis.data.PlayerEntity;
 import com.webfm.tennis.data.PlayerRepository;
 import com.webfm.tennis.web.PlayerList;
 import com.webfm.tennis.web.PlayerToSave;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,11 +32,17 @@ public class PlayerService {
                 .collect(Collectors.toList());
     }
 
-    public Player getByLastName(String lastName){
-        return PlayerList.ALL.stream()
-                .filter(player -> player.lastName().equals(lastName))
-                .findFirst()
-                .orElseThrow(() -> new PlayerNotFoundException(lastName));
+    public Player getByLastName(String lastName) {
+        Optional<PlayerEntity> player = playerRepository.findOneByLastNameIgnoreCase(lastName);
+        if(player.isEmpty()) {
+            throw new PlayerNotFoundException(lastName);
+        }
+        return new Player(
+                player.get().getFirstName(),
+                player.get().getLastName(),
+                player.get().getBirthDate(),
+                new Rank(player.get().getRank(), player.get().getPoints())
+        );
     }
 
     public Player create(PlayerToSave playerToSave) {
