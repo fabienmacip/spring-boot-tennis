@@ -43,9 +43,13 @@ public class SecurityConfiguration {
                                 .requestMatchers("/swagger-ui/**").permitAll()
                                 .requestMatchers("/v3/api-docs/**").permitAll()
                                 .requestMatchers("/accounts/login").permitAll()
+                                .requestMatchers("/healthcheck").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/players/**").hasAuthority("ROLE_USER")
+                                .requestMatchers(HttpMethod.POST, "/players/**").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/players/**").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/players/**").hasAuthority("ROLE_ADMIN")
                                 .anyRequest().authenticated()
                 );
         return http.build();
     }
-
 }
