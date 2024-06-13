@@ -4,8 +4,7 @@ import com.webfm.tennis.Player;
 import com.webfm.tennis.Rank;
 import com.webfm.tennis.data.PlayerEntity;
 import com.webfm.tennis.data.PlayerRepository;
-import com.webfm.tennis.web.PlayerList;
-import com.webfm.tennis.web.PlayerToSave;
+import com.webfm.tennis.PlayerToSave;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

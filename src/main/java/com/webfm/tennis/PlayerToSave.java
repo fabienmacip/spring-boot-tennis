@@ -1,4 +1,4 @@
-package com.webfm.tennis.web;
+package com.webfm.tennis;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

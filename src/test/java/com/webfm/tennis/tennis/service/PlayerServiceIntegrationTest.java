@@ -3,7 +3,7 @@ package com.webfm.tennis.tennis.service;
 import com.webfm.tennis.Player;
 import com.webfm.tennis.service.PlayerNotFoundException;
 import com.webfm.tennis.service.PlayerService;
-import com.webfm.tennis.web.PlayerToSave;
+import com.webfm.tennis.PlayerToSave;
 
 import org.assertj.core.api.Assertions;
 import org.assertj.core.groups.Tuple;

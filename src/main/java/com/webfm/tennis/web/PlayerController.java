@@ -1,7 +1,7 @@
 package com.webfm.tennis.web;
 
-import com.webfm.tennis.HealthCheck;
 import com.webfm.tennis.Player;
+import com.webfm.tennis.PlayerToSave;
 import com.webfm.tennis.service.PlayerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -14,7 +14,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @Tag(name="Tennis Players API")
