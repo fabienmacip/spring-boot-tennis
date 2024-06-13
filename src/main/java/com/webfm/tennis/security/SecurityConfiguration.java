@@ -38,6 +38,16 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .headers(headers ->
+                        headers
+                                .contentSecurityPolicy(csp ->
+                                        csp.policyDirectives("default-src 'self' data:; style-src 'self' 'unsafe-inline';")
+                                )
+                                .frameOptions(frameOptionsConfig -> frameOptionsConfig.deny())
+                                .permissionsPolicy(permissionsPolicyConfig -> permissionsPolicyConfig.policy(
+                                        "fullscreen=(self), geolocation=(), microphone=(), camera=()"
+                                ))
+                )
                 .authorizeHttpRequests(authorizations ->
                         authorizations
                                 .requestMatchers("/swagger-ui/**").permitAll()
