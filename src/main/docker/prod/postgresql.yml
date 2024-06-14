@@ -5,7 +5,7 @@ services:
     container_name: webfm-postgres-production
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=5ML^Es#x%4U&DK6c
+      - POSTGRES_PASSWORD=
     ports:
       - '5424:5432'
     volumes:
